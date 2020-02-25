@@ -6,6 +6,17 @@ class Stack:
     def __init__(self):
         self.size = 0
         # Why is our DLL a good choice to store our elements?
+
+        # As I mentioned below, stacks operate on a LIFO basis. So when we add an item to the stack it gets added 
+        # to the top of the stack (the head) and when we remove an item from the stack it gets removed from the top (the head).
+        # Our DLL is a good choice to store our elements because insertion and deletion are fairly inexpensive in terms of 
+        # time complexity. For example, to implement the pop method and remove the item at the top of the stack, we just need to
+        # set the second item in our DLL's 'prev' attribute equal to none and delete the head node.
+        # Inserting at the top of stack (pushing) is similarly as inexpensive - it's just a matter of readjusting the reference pointers.
+        # If we contrast this with using an array as our method of storage, for example, if we are to implement the pop method and remove the item at
+        # the top of the stack, the index of every item after that item would have be adjusted (decremented by one because we've just removed the 0th item).
+        # Same applies to pushing - if we are to insert an element at the top of the stack (at the zeroth index), the index of every item after that will have to be 
+        # incremented by one.
         self.storage = DoublyLinkedList()
 
     # Because stacks operate according to Last In First Out ordering, 
