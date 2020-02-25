@@ -7,12 +7,17 @@ class Queue:
     def __init__(self):
         self.size = 0
         # Why is our DLL a good choice to store our elements?
+        
         # As I mentioned below, queues operate on a FIFO basis. So when we add an item to the queue it gets added 
-        # to the bottom of the queue and when we remove an item from the queue it gets removed from the top.
+        # to the bottom of the queue (the tail) and when we remove an item from the queue it gets removed from the top (the head).
         # Our DLL is a good choice to store our elements because insertion and deletion are fairly inexpensive in terms of 
-        # time complexity. For example, to implement the enqueue method and add an item to the bottom of the queue, we just need to
-        # set the new items 'prev' attribute in our DLL to the lists tail node and set the 'next' attribute on the list's tail node
-        # in our DLL equal to the new item. 
+        # time complexity. For example, to implement the dequeue method and remove the item at the top of the queue, we just need to
+        # set the second item in our DLL's 'prev' attribute equal to none and delete the head node.
+        # Inserting at the bottom of queue (enqueueing) is similarly as inexpensive - it's just a matter of readjusting the reference pointers.
+        # If we contrast this with using an array as our method of storage, for example, if we are to implement the dequeue method and remove the item at
+        # the top of the queue, the index of every item after that item would have be adjusted (decremented by one because we've just removed the 0th item)
+        # which increases time complexity.  
+  
         self.storage = DoublyLinkedList()
 
     # Because queues operate according to First In First Out ordering, 
