@@ -61,7 +61,13 @@ class BinarySearchTree:
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # base case: if the current node has no node to the RHS,
+        # we must be on the rightmost node of the BST -> return value of node
+        if not self.right:
+            return self.value
+        # else recur the function by calling it on the node to the RHS of the current node til it 
+        # reaches base case
+        return self.right.get_max()    
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
