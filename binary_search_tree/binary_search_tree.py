@@ -1,7 +1,6 @@
 import sys
-sys.path.append('../queue_and_stack')
-# from dll_queue import Queue
-# from dll_stack import Stack
+from dll_queue import Queue
+from dll_stack import Stack
 
 
 class BinarySearchTree:
@@ -146,32 +145,47 @@ class BinarySearchTree:
     # in an iterative breadth first traversal
     def bft_print(self, node):
         # create an empty queue
+        queue = Queue()
         # add starting node to the queue
-        
+        queue.enqueue(node)
+
         # iterate over queue
+        while queue.len() > 0:
             # set current node to first item in the q
+            current_node = queue.dequeue()
             # then print the current value
+            print(current_node.value)
             # if the current node has a left child
+            if current_node.left:
                 # add current left to queue
+                queue.enqueue(current_node.left)
             # if current right child, 
-                # add right child to queue     
-        pass
+            if current_node.right:
+                # add right child to queue  
+                queue.enqueue(current_node.right)   
         
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        # create an empty stack
-        # add starting node to the stack
-        
-        # iterate over stack
-            # set current node to first item in the stack
-            # then print the current value
-            # if the current node has a left child
-                # add current left to stack (push)
-            # if current right child, 
-                # add right child to stack (push)   
-        pass
+        # create empty stack
+        stack = Stack()
+        # initialize stack to hold starting node at top
+        stack.push(node)
+        # create loop to iterate over stack, so long as length > 0
+        while stack.len() > 0:
+            # set the current node == node at top of the stack (ie current node = stack.pop())
+            cur_node = stack.pop()
+            # print the value of the current node
+            print(cur_node.value)
+            # check if current node has child to lhs
+            if cur_node.left:
+                # if so, push child node to top of stack
+                stack.push(cur_node.left)
+            # check if current node has child to rhs
+            if cur_node.right:
+                # if so, push child node to top of stack
+                stack.push(cur_node.right)
 
     # STRETCH Goals -------------------------
     # Note: Research may be required
