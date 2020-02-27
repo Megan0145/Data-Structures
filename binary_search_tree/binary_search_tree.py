@@ -178,7 +178,7 @@ class BinarySearchTree:
 
     # Print Pre-order recursive DFT
     def pre_order_dft(self, node):
-        # pre-order traversal: simalar to in-order traversal except the order in which we visit nodes varies slightly
+        # pre-order df traversal: simalar to in-order traversal except the order in which we visit nodes varies slightly
         # we want to visit the current node before visiting any child nodes
 
         # firstly, print the value of the current node before moving onto the children
@@ -194,4 +194,20 @@ class BinarySearchTree:
 
     # Print Post-order recursive DFT
     def post_order_dft(self, node):
-        pass
+        # post-order df traversal: simalar to in-order & pre-order traversal except the order in which we visit nodes varies slightly
+        # we want to visit the current node LAST, AFTER visiting any child nodes
+
+        # first, if the current node has a subtree to LHS
+        if node.left:
+            # recur function on left subtree
+            self.post_order_dft(node.left) 
+
+        # secondly, if the current node has a subtree to RHS    
+        if node.right:   
+            # recur function on right subtree
+            self.post_order_dft(node.right)   
+
+        # lastly, print the value of the current node
+        print(node.value)    
+
+        
